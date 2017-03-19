@@ -1,4 +1,4 @@
 ---
   - name: Install OpenVPN Access Server
 #    apt: name=openvpn state=present
-    apt: deb={{ openvpn-as-package }}
+    apt: deb={{ openvpn_as_package }}
