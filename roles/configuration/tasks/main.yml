@@ -32,3 +32,10 @@
 
   - name: Install fail2ban
     apt: name=fail2ban state=present
+
+  - name: Set the locale to en_US UTF8
+    lineinfile: dest=/etc/locale.gen line='en_US.UTF-8 UTF-8' state=present
+
+  - name: Generate the locale for en_US UTF8
+    shell: locale-gen
+
