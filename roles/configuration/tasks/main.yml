@@ -4,8 +4,8 @@
     user: name="{{username}}" groups="{{usergroups}}"
 
   # Set the new hostname
-  - hostname:
-      name: "{{hostname}}"
+  - name: Set the hostname
+    hostname: name="{{hostname}}"
 
   # Set the new ipaddress
   #- name: Configure IP address 
