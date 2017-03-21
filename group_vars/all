@@ -4,6 +4,7 @@ ipaddress: 192.168.1.4
 
 # User information
 username: martijn
+password: $6$CTO7dg1VydmKQHF$hPHQzgRCXDmMZzN1U4jkctJgW.IeAoTURVCLqIoA8IwT97odQDhF1iwrsz6ScWdPHXmEQGptRDyRo8HcHECFs/
 usergroups: adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi
 
 sshkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8c3uZAc1s+uxfaKdmWbAzxhCRSesUCFKWfpdm0o7R8FKS+VUMxk8xAso+/H9jxsPfC+IO/bDeIYYAtrx/yZ7AKsucI22wvg8WEAZdaZpRbK214HRSwkVpfKNihUFi/JE0BiCScjkF1DPmfiApYZLTelJyoU68AJgaWG0i6khq+YwXI2ON5SXpPblvIASqD20LljTLjcus69ZhzoQAgWJ8ixE/eLDXnxwwqwUK8gMnCNzYblemyZ6roV4e24qjw9IE7lpc47yO3MuKoTtVMqwqzdAn1W3yMQIReChEBJYRTaJsQUFQjBr+jELkbSNhJv8nJn7OOO9yd/+jygYZ+NtX mkieboom@mapr.com
