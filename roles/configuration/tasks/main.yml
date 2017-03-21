@@ -1,22 +1,19 @@
 ---
-  # Create a new user prior to deleting the standard user for security reasons
   - name: Create user and add to groups
     user: name="{{username}}" groups="{{usergroups}}" password="{{password}}"
 
-  # Import the sshkey for the new user
-  - name: Set authorized key took from file
+  - name: Import the sshkey for the new user
     authorized_key:
       user: "{{username}}"
       state: present
       key: "{{sshkey}}"
 
-#  # Remove the user 'pi'
-#  - user:
-#      name: pi
-#      state: absent
-#      remove: yes
+  # Remove the user 'pi'
+  - user:
+      name: pi
+      state: absent
+      remove: yes
 
-  # Set the new hostname
   - name: Set the hostname
     hostname: name="{{hostname}}"
 
