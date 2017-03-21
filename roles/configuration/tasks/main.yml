@@ -3,11 +3,18 @@
   - name: Create user and add to groups
     user: name="{{username}}" groups="{{usergroups}}"
 
+  # Import the sshkey for the new user
   - name: Set authorized key took from file
     authorized_key:
       user: "{{username}}"
       state: present
       key: "{{sshkey}}"
+
+  # Remove the user 'pi'
+  - user:
+      name: pi
+      state: absent
+      remove: yes
 
   # Set the new hostname
   - name: Set the hostname
@@ -16,3 +23,17 @@
   # Set the new ipaddress
   #- name: Configure IP address 
   #  ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
+
+  - name: Disable using passwords for SSH
+    vars:
+      disable_ssh_pwd_auth: 'PasswordAuthentication no'
+    lineinfile: dest=/etc/ssh/sshd_config line='{{ disable_ssh_pwd_auth }}' state=present
+
+  - name: Disable SSH login for root
+    vars:
+      disable_ssh_root_login: 'PermitRootLogin no'
+    lineinfile: dest=/etc/ssh/sshd_config line='{{ disable_ssh_root_login }}' state=present
+
+  - name: Restarting the SSH service
+      name: ssh
+      state: restarted
