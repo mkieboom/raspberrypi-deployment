@@ -39,3 +39,6 @@
   - name: Generate the locale for en_US UTF8
     shell: locale-gen
 
+  - name: Set timezone to Europe/Amsterdam
+    timezone: name:Europe/Amsterdam
+
