@@ -5,8 +5,8 @@
 
   # Set the new hostname
   - hostname:
-    name: "{{hostname}}"
+      name: "{{hostname}}"
 
   # Set the new ipaddress
-  - name: Configure IP address 
-    ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
+  #- name: Configure IP address 
+  #  ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
