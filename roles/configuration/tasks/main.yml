@@ -35,5 +35,4 @@
     lineinfile: dest=/etc/ssh/sshd_config line='{{ disable_ssh_root_login }}' state=present
 
   - name: Restarting the SSH service
-      name: ssh
-      state: restarted
+    service: name=ssh state=restarted
