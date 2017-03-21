@@ -3,6 +3,12 @@
   - name: Create user and add to groups
     user: name="{{username}}" groups="{{usergroups}}"
 
+  - name: Set authorized key took from file
+    authorized_key:
+      user: "{{username}}"
+      state: present
+      key: "{{sshkey}}"
+
   # Set the new hostname
   - name: Set the hostname
     hostname: name="{{hostname}}"
