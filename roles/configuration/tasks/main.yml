@@ -1,0 +1,12 @@
+---
+  # Create a new user prior to deleting the standard user for security reasons
+  - name: Create user and add to groups
+    user: name={{username}} groups={{usergroups}}
+
+  # Set the new hostname
+  - hostname:
+    name: {{hostname}}
+
+  # Set the new ipaddress
+  - name: Configure IP address 
+    ipadm_addr: addr={{ipaddress}}/32 addrobj=eth0/v4 state=present
