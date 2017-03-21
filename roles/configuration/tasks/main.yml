@@ -10,11 +10,11 @@
       state: present
       key: "{{sshkey}}"
 
-  # Remove the user 'pi'
-  - user:
-      name: pi
-      state: absent
-      remove: yes
+#  # Remove the user 'pi'
+#  - user:
+#      name: pi
+#      state: absent
+#      remove: yes
 
   # Set the new hostname
   - name: Set the hostname
@@ -25,14 +25,13 @@
   #  ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
 
   - name: Disable using passwords for SSH
-    vars:
-      disable_ssh_pwd_auth: 'PasswordAuthentication no'
-    lineinfile: dest=/etc/ssh/sshd_config line='{{ disable_ssh_pwd_auth }}' state=present
+    lineinfile: dest=/etc/ssh/sshd_config line='PasswordAuthentication no' state=present
 
   - name: Disable SSH login for root
-    vars:
-      disable_ssh_root_login: 'PermitRootLogin no'
-    lineinfile: dest=/etc/ssh/sshd_config line='{{ disable_ssh_root_login }}' state=present
+    lineinfile: dest=/etc/ssh/sshd_config line='PermitRootLogin no' state=present
 
   - name: Restarting the SSH service
     service: name=ssh state=restarted
+
+  - name: Install fail2ban
+    apt: name=fail2ban state=present
