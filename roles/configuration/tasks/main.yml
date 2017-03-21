@@ -40,5 +40,5 @@
     shell: locale-gen
 
   - name: Set timezone to Europe/Amsterdam
-    timezone: name:Europe/Amsterdam
+    timezone: name=Europe/Amsterdam
 
