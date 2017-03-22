@@ -9,7 +9,7 @@
       key: "{{sshkey}}"
 
   - name: Remove the user 'pi'
-  - user: name=pi state=absent remove=yes
+    user: name=pi state=absent remove=yes
 
   - name: Disable using passwords for SSH
     lineinfile: dest=/etc/ssh/sshd_config line='PasswordAuthentication no' state=present
