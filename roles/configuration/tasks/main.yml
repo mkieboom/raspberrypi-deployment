@@ -8,9 +8,6 @@
       state: present
       key: "{{sshkey}}"
 
-  - name: Remove the user 'pi'
-    user: name=pi state=absent remove=yes
-
   - name: Disable using passwords for SSH
     lineinfile: dest=/etc/ssh/sshd_config line='PasswordAuthentication no' state=present
 
@@ -39,12 +36,18 @@
   #- name: Configure IP address 
   #  ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
 
-  - name: set static IP address (/etc/dhcpcd.conf)
-    mcli:
-      conn_name: eth0
-      ifname: eth0
-      type: ethernet
-      ip4: "{{ipaddress}}"
-      gw4: 192.168.2.254
-      dns4: ["192.168.2.254", "8.8.8.8"]
-      state: present
+#  - name: set static IP address (/etc/dhcpcd.conf)
+#    mcli:
+#      conn_name: eth0
+#      ifname: eth0
+#      type: ethernet
+#      ip4: "{{ipaddress}}"
+#      gw4: 192.168.2.254
+#      dns4: ["192.168.2.254", "8.8.8.8"]
+#      state: present
+
+  - name: Remove the user 'pi'
+    user: name=pi state=absent remove=yes
+
+
+
