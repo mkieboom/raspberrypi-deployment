@@ -11,22 +11,6 @@
   - name: Remove the user 'pi'
   - user: name=pi state=absent remove=yes
 
-  - name: Set the hostname
-    hostname: name="{{hostname}}"
-
-  # Set the new ipaddress
-  #- name: Configure IP address 
-  #  ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
-
-  - nmcli:
-      conn_name: eth0
-      ifname: eth0
-      type: ethernet
-      ip4: "{{ipaddress}}"/32
-      gw4: 192.168.2.254
-      dns4: ["192.168.2.254", "8.8.8.8"]
-      state: present
-
   - name: Disable using passwords for SSH
     lineinfile: dest=/etc/ssh/sshd_config line='PasswordAuthentication no' state=present
 
@@ -48,3 +32,19 @@
   - name: Set timezone to Europe/Amsterdam
     timezone: name=Europe/Amsterdam
 
+  - name: Set the hostname
+    hostname: name="{{hostname}}"
+
+  # Set the new ipaddress
+  #- name: Configure IP address 
+  #  ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
+
+  - name: set static IP address (/etc/dhcpcd.conf)
+    mcli:
+      conn_name: eth0
+      ifname: eth0
+      type: ethernet
+      ip4: "{{ipaddress}}"
+      gw4: 192.168.2.254
+      dns4: ["192.168.2.254", "8.8.8.8"]
+      state: present
