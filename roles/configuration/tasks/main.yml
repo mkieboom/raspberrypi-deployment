@@ -48,6 +48,9 @@
 
   - name: Remove the user 'pi'
     user: name=pi state=absent remove=yes
-
+    register: command_result
+    failed_when: "command_result|failed and 'user pi is currently used' not in command_result.msg"
+    ignore_errors: yes
+    
 
 
