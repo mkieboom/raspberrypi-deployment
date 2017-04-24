@@ -29,7 +29,7 @@
   - name: Download Bluez patch for Raspberry PI
     get_url:
       url: "https://gist.github.com/pelwell/c8230c48ea24698527cd/archive/3b07a1eb296862da889609a84f8e10b299b7442d.zip"
-      dest: "/tmp/"
+      dest: "/tmp/3b07a1eb296862da889609a84f8e10b299b7442d.zip"
 
   - name: Extract Bluez patch for Raspberry PI
     unarchive: src=/tmp/3b07a1eb296862da889609a84f8e10b299b7442d.zip dest=/tmp/bluez-5.41/ copy=no
