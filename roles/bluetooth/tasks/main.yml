@@ -73,17 +73,28 @@
 #      enabled: yes
 #      masked: no
 
-  - name: Launch bluetooth service with --experimental
-    shell: "hciattach /dev/ttyAMA0 bcm43xx 921600 noflow -"
+#  - name: Lhciattach
+#    shell: "hciattach /dev/ttyAMA0 bcm43xx 921600 noflow -"
 
-  - name: Launch bluetooth service with --experimental
-    shell: "hciconfig hci0 up"
+#  - name: Launch hciconfig
+#    shell: "hciconfig hci0 up"
 
-  - name: Start the Elasticsearch service
-    service:
-      name: bluetooth
-      state: restarted
-      enabled: yes
-      masked: no
+#  - name: Start the Elasticsearch service
+#    service:
+#      name: bluetooth
+#      state: restarted
+#      enabled: yes
+#      masked: no
 
-      
+  - name: insert/update HTML surrounded by custom markers after <body> line
+    blockinfile:
+      path: /etc/rc.local
+#      marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+      insertafter: "# rc.local"
+      content: |
+        hciattach /dev/ttyAMA0 bcm43xx 921600 noflow -
+        hciconfig hci0 up
+        systemctl restart bluetooth
+
+
+
