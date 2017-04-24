@@ -1,0 +1,80 @@
+---
+  - name: Purge Bluez
+    apt: name=bluez state=absent
+
+  - name: Run "apt-get update"
+    apt: update_cache=yes
+
+  - name: Install list of packages
+    apt: name={{item}} state=present
+    with_items:
+         - git
+         - bc
+         - libusb-dev
+         - libdbus-1-dev
+         - libglib2.0-dev
+         - libudev-dev
+         - libical-dev
+         - libreadline-dev
+         - libbluetooth-dev
+#         - blueman
+#         - libusb-dev
+#         - libdbus-1-dev
+#         - libglib2.0-dev
+#         - libudev-dev
+#         - libical-dev
+#         - libreadline-dev
+
+
+#   - name: Create user and add to groups
+#     user: name="{{username}}" groups="{{usergroups}}" password="{{password}}"
+
+#   - name: Import the sshkey for the new user
+#     authorized_key:
+#       user: "{{username}}"
+#       state: present
+#       key: "{{sshkey}}"
+
+#   - name: Disable using passwords for SSH
+#     lineinfile: dest=/etc/ssh/sshd_config line='PasswordAuthentication no' state=present
+
+#   - name: Disable SSH login for root
+#     lineinfile: dest=/etc/ssh/sshd_config line='PermitRootLogin no' state=present
+
+#   - name: Restarting the SSH service
+#     service: name=ssh state=restarted
+
+#   - name: Install fail2ban
+#     apt: name=fail2ban state=present
+
+#   - name: Set the locale to en_US UTF8
+#     lineinfile: dest=/etc/locale.gen line='en_US.UTF-8 UTF-8' state=present
+
+#   - name: Generate the locale for en_US UTF8
+#     shell: locale-gen
+
+#   - name: Set timezone to Europe/Amsterdam
+#     timezone: name=Europe/Amsterdam
+
+#   - name: Set the hostname
+#     hostname: name="{{hostname}}"
+
+#   # Set the new ipaddress
+#   #- name: Configure IP address 
+#   #  ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
+
+# #  - name: set static IP address (/etc/dhcpcd.conf)
+# #    mcli:
+# #      conn_name: eth0
+# #      ifname: eth0
+# #      type: ethernet
+# #      ip4: "{{ipaddress}}"
+# #      gw4: 192.168.2.254
+# #      dns4: ["192.168.2.254", "8.8.8.8"]
+# #      state: present
+
+#   - name: Remove the user 'pi'
+#     user: name=pi state=absent remove=yes
+
+
+
