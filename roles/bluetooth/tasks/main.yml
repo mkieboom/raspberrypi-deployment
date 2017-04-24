@@ -40,17 +40,19 @@
       chdir: /tmp/bluez-5.41/
 
   - name: Bluez - configure
-    shell: "/tmp/bluez-5.41/configure --prefix=/usr --mandir=/usr/share/man --sysconfdir=/etc --localstatedir=/var --enable-experimental --enable-tools --with-systemdsystemunitdir=/lib/systemd/system --with-systemduserunitdir=/usr/lib/systemd"
-
-  - name: Apply Bluez patch
-    shell: "make"
+    shell: "./configure --prefix=/usr --mandir=/usr/share/man --sysconfdir=/etc --localstatedir=/var --enable-experimental --enable-tools --with-systemdsystemunitdir=/lib/systemd/system --with-systemduserunitdir=/usr/lib/systemd"
     args:
       chdir: /tmp/bluez-5.41/
 
-
-#  - name: Bluez - make
-#    make:
+#  - name: Apply Bluez patch
+#    shell: "make"
+#    args:
 #      chdir: /tmp/bluez-5.41/
+
+
+  - name: Bluez - make
+    make:
+      chdir: /tmp/bluez-5.41/
 
   - name: Bluez - make install
     make:
