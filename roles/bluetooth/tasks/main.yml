@@ -39,14 +39,14 @@
     args:
       chdir: /tmp/bluez-5.41/
 
-  - name: Bluez: configure
+  - name: Bluez - configure
     shell: "/tmp/bluez-5.41/configure --prefix=/usr --mandir=/usr/share/man --sysconfdir=/etc --localstatedir=/var --enable-experimental --enable-tools --with-systemdsystemunitdir=/lib/systemd/system --with-systemduserunitdir=/usr/lib/systemd"
 
-  - name: Bluez: make
+  - name: Bluez - make
     make:
       chdir: /tmp/bluez-5.41/
 
-  - name: Bluez: make install
+  - name: Bluez - make install
     make:
       chdir: /tmp/bluez-5.41/
       target: install
