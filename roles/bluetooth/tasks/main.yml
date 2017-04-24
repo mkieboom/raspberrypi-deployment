@@ -35,59 +35,21 @@
     unarchive: src=/tmp/3b07a1eb296862da889609a84f8e10b299b7442d.zip dest=/tmp/bluez-5.41/ copy=no
 
   - name: Apply Bluez patch
-    command: "git apply -v c8230c48ea24698527cd-3b07a1eb296862da889609a84f8e10b299b7442d/*"
+    shell: "git apply -v c8230c48ea24698527cd-3b07a1eb296862da889609a84f8e10b299b7442d/*"
     args:
       chdir: /tmp/bluez-5.41/
 
-#   - name: Create user and add to groups
-#     user: name="{{username}}" groups="{{usergroups}}" password="{{password}}"
+  - name: Bluez: configure
+    shell: "/tmp/bluez-5.41/configure --prefix=/usr --mandir=/usr/share/man --sysconfdir=/etc --localstatedir=/var --enable-experimental --enable-tools --with-systemdsystemunitdir=/lib/systemd/system --with-systemduserunitdir=/usr/lib/systemd"
 
-#   - name: Import the sshkey for the new user
-#     authorized_key:
-#       user: "{{username}}"
-#       state: present
-#       key: "{{sshkey}}"
+  - name: Bluez: make
+    make:
+      chdir: /tmp/bluez-5.41/
 
-#   - name: Disable using passwords for SSH
-#     lineinfile: dest=/etc/ssh/sshd_config line='PasswordAuthentication no' state=present
-
-#   - name: Disable SSH login for root
-#     lineinfile: dest=/etc/ssh/sshd_config line='PermitRootLogin no' state=present
-
-#   - name: Restarting the SSH service
-#     service: name=ssh state=restarted
-
-#   - name: Install fail2ban
-#     apt: name=fail2ban state=present
-
-#   - name: Set the locale to en_US UTF8
-#     lineinfile: dest=/etc/locale.gen line='en_US.UTF-8 UTF-8' state=present
-
-#   - name: Generate the locale for en_US UTF8
-#     shell: locale-gen
-
-#   - name: Set timezone to Europe/Amsterdam
-#     timezone: name=Europe/Amsterdam
-
-#   - name: Set the hostname
-#     hostname: name="{{hostname}}"
-
-#   # Set the new ipaddress
-#   #- name: Configure IP address 
-#   #  ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
-
-# #  - name: set static IP address (/etc/dhcpcd.conf)
-# #    mcli:
-# #      conn_name: eth0
-# #      ifname: eth0
-# #      type: ethernet
-# #      ip4: "{{ipaddress}}"
-# #      gw4: 192.168.2.254
-# #      dns4: ["192.168.2.254", "8.8.8.8"]
-# #      state: present
-
-#   - name: Remove the user 'pi'
-#     user: name=pi state=absent remove=yes
-
+  - name: Bluez: make install
+    make:
+      chdir: /tmp/bluez-5.41/
+      target: install
+#      become: yes
 
 
