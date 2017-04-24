@@ -17,36 +17,27 @@
          - libical-dev
          - libreadline-dev
          - libbluetooth-dev
-#         - blueman
-#         - libusb-dev
-#         - libdbus-1-dev
-#         - libglib2.0-dev
-#         - libudev-dev
-#         - libical-dev
-#         - libreadline-dev
 
-   - name: Download Bluez
-     get_url:
-       url: "http://www.kernel.org/pub/linux/bluetooth/bluez-5.41.tar.xz"
-       dest: "/tmp/bluez-5.41.tar.xz"
-#       timeout: 900
+  - name: Download Bluez
+    get_url:
+      url: "http://www.kernel.org/pub/linux/bluetooth/bluez-5.41.tar.xz"
+      dest: "/tmp/bluez-5.41.tar.xz"
 
-   - name: Extract Bluez
-     unarchive: src=/tmp/bluez-5.41.tar.xz dest=/tmp/ copy=no
+  - name: Extract Bluez
+    unarchive: src=/tmp/bluez-5.41.tar.xz dest=/tmp/ copy=no
 
-   - name: Download Bluez patch for Raspberry PI
-     get_url:
-       url: "https://gist.github.com/pelwell/c8230c48ea24698527cd/archive/3b07a1eb296862da889609a84f8e10b299b7442d.zip"
-       dest: "/tmp/"
-#       timeout: 900
+  - name: Download Bluez patch for Raspberry PI
+    get_url:
+      url: "https://gist.github.com/pelwell/c8230c48ea24698527cd/archive/3b07a1eb296862da889609a84f8e10b299b7442d.zip"
+      dest: "/tmp/"
 
-   - name: Extract Bluez patch for Raspberry PI
-     unarchive: src=/tmp/3b07a1eb296862da889609a84f8e10b299b7442d.zip dest=/tmp/bluez-5.41/ copy=no
+  - name: Extract Bluez patch for Raspberry PI
+    unarchive: src=/tmp/3b07a1eb296862da889609a84f8e10b299b7442d.zip dest=/tmp/bluez-5.41/ copy=no
 
-   - name: Apply Bluez patch
-     command: "git apply -v c8230c48ea24698527cd-3b07a1eb296862da889609a84f8e10b299b7442d/*"
-     args:
-       chdir: /tmp/bluez-5.41/
+  - name: Apply Bluez patch
+    command: "git apply -v c8230c48ea24698527cd-3b07a1eb296862da889609a84f8e10b299b7442d/*"
+    args:
+      chdir: /tmp/bluez-5.41/
 
 #   - name: Create user and add to groups
 #     user: name="{{username}}" groups="{{usergroups}}" password="{{password}}"
