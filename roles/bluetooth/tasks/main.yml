@@ -57,15 +57,33 @@
   - name: Launch bluetooth service with --experimental
     shell: "sed -ie 's|/usr/libexec/bluetooth/bluetoothd|/usr/libexec/bluetooth/bluetoothd --experimental|g' /lib/systemd/system/bluetooth.service"
 
+#  - lineinfile:
+#    path: /lib/systemd/system/bluetooth.service
+#    regexp: '^SELINUX='
+#    line: 'SELINUX=enforcing'
+
   - name: Download BCM43430A1.hcd into /lib/firmware/brcm
     get_url:
       url: "http://phelum.net/temp/BCM43430A1.hcd"
       dest: "/lib/firmware/brcm/BCM43430A1.hcd"
 
-  - name: enable service bluetooth and ensure it is not masked
-    systemd:
+#  - name: enable service bluetooth and ensure it is not masked
+#    systemd:
+#      name: bluetooth
+#      enabled: yes
+#      masked: no
+
+  - name: Launch bluetooth service with --experimental
+    shell: "hciattach /dev/ttyAMA0 bcm43xx 921600 noflow -"
+
+  - name: Launch bluetooth service with --experimental
+    shell: "hciconfig hci0 up"
+
+  - name: Start the Elasticsearch service
+    service:
       name: bluetooth
+      state: restarted
       enabled: yes
       masked: no
 
-
+      
