@@ -56,12 +56,18 @@
   - name: Launch bluetooth service with --experimental
     shell: "sed -ie 's|/usr/libexec/bluetooth/bluetoothd|/usr/libexec/bluetooth/bluetoothd --experimental|g' /lib/systemd/system/bluetooth.service"
 
+  - name: enable service bluetooth and ensure it is not masked
+    systemd:
+      name: bluetooth
+      enabled: yes
+      masked: no
+
   - name: Download BCM43430A1.hcd into /lib/firmware/brcm
     get_url:
       url: "http://phelum.net/temp/BCM43430A1.hcd"
       dest: "/lib/firmware/brcm/BCM43430A1.hcd"
 
-  - name: insert/update HTML surrounded by custom markers after <body> line
+  - name: Insert commands to /etc/rc.local to launch Bluetooth on system startup
     blockinfile:
       path: /etc/rc.local
       insertafter: "# rc.local"
