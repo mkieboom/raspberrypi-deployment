@@ -20,6 +20,20 @@
          - php5-imap
          - php5-mcrypt
 
+  - name: Configure Nginx to support .php files
+    shell: "sed -ie 's|index index.html index.htm index.nginx-debian.html;|index index.php index.html index.htm index.nginx-debian.html;|g' /etc/nginx/sites-available/default"
+
+  - name: Insert commands to /etc/rc.local to launch Bluetooth on system startup
+    blockinfile:
+      path: /etc/rc.local
+      insertafter: "        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000"
+      content: |
+        location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        }
+
   - name: Install MariaDB
     apt: name={{item}} state=present
     with_items:
