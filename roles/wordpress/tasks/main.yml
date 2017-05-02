@@ -48,8 +48,12 @@
   - name: Extract Wordpress
     unarchive: src=/tmp/wordpress.tar.gz dest=/var/www/html/ copy=no
 
+
   - name: Move Wordpress files to webserver root 
     shell: "mv /var/www/html/wordpress/* /var/www/html/."
+    register: command_result
+    failed_when: "command_result|failed and 'Directory not empty' not in command_result.msg"
+    ignore_errors: yes
 
   - name: PHP runs under 'www-data' user. Open Wordpress to allow updating and installing plugins without FTP. 
     shell: "chown -hR www-data:www-data /var/www/html/"
@@ -57,17 +61,18 @@
 
   - name: Create Wordpress database in MariaDB
     shell: "echo 'create database wordpress' | mysql -u 'root' --password=''"
+    register: command_result
+    failed_when: "command_result|failed and 'database exists' not in command_result.msg"
+    ignore_errors: yes
 
   - name: Create Wordpress database in MariaDB
     shell: "echo 'create database wordpress' | mysql -u 'root' --password=''"
 
   - name: Grant usage on Wordpress database in MariaDB
-    shell: "echo 'grant usage on *.* to root@localhost identified by ""' | mysql -u 'root' --password=''"
+    shell: "echo \"grant usage on *.* to root@localhost identified by ''\" | mysql -u 'root' --password=''"
 
   - name: Grant privileges on Wordpress database in MariaDB
-    shell: "echo 'grant all privileges on wordpress.* to root@localhost;' | mysql -u 'root' --password=''"
+    shell: "echo \"grant all privileges on wordpress.* to root@localhost;\" | mysql -u 'root' --password=''"
 
-
-#"CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
 
 
