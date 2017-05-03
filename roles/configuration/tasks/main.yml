@@ -32,19 +32,18 @@
   - name: Set the hostname
     hostname: name="{{hostname}}"
 
-  # Set the new ipaddress
-  #- name: Configure IP address 
-  #  ipadm_addr: addr="{{ipaddress}}"/32 addrobj=eth0/v4 state=present
+  - name: Set hostname in /etc/hosts
+    lineinfile:
+      path: /etc/hosts
+      regexp: '^127.0.1.1'
+      line: '127.0.1.1  {{hostname}}'
 
-#  - name: set static IP address (/etc/dhcpcd.conf)
-#    mcli:
-#      conn_name: eth0
-#      ifname: eth0
-#      type: ethernet
-#      ip4: "{{ipaddress}}"
-#      gw4: 192.168.2.254
-#      dns4: ["192.168.2.254", "8.8.8.8"]
-#      state: present
+# TODO: Set IP address
+# vim /etc/dhcpcd.conf
+# interface eth0
+# static ip_address=192.168.1.10/24
+# static routers=192.168.1.1
+# static domain_name_servers=192.168.1.1
 
   - name: Remove the user 'pi'
     user: name=pi state=absent remove=yes
