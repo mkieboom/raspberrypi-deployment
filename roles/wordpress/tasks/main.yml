@@ -48,6 +48,11 @@
   - name: Extract Wordpress
     unarchive: src=/tmp/wordpress.tar.gz dest=/var/www/html/ copy=no
 
+  - name: Remove Nginx default webpage
+    shell: "rm -rf /var/www/html/index.nginx-debian.html"
+
+  - name: Restart the Nginx webservice
+    service: name=nginx state=restarted
 
   - name: Move Wordpress files to webserver root 
     shell: "mv /var/www/html/wordpress/* /var/www/html/."
