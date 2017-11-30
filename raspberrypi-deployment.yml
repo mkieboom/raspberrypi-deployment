@@ -1,7 +1,7 @@
 - name: Install software
   hosts: all
   roles:
-    - bluetooth 
+#    - bluetooth 
 #    - wordpress
     - configuration
 #    - openvpn
