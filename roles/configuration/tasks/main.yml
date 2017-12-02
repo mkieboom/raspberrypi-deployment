@@ -1,9 +1,9 @@
 ---
   - name: Create user and add to groups
     user:
-      name="{{username}}"
-      groups="{{usergroups}}"
-      password="{{password}}"
+      name: "{{username}}"
+      groups: "{{usergroups}}"
+      password: "{{password}}"
       shell: /bin/bash
 
   - name: Import the sshkey for the new user
