@@ -2,6 +2,8 @@
 #hostname: 
 #ipaddress: 
 
+timezone: Europe/Amsterdam
+
 # User information
 #username: 
 #password: 

@@ -27,7 +27,7 @@
     shell: locale-gen
 
   - name: Set timezone to Europe/Amsterdam
-    timezone: name=Europe/Amsterdam
+    timezone: name={{timezone}}
 
   - name: Set the hostname
     hostname: name="{{hostname}}"
