@@ -3,5 +3,6 @@
   roles:
 #    - bluetooth 
 #    - wordpress
-    - configuration
+#    - configuration
+    - wifi-config
 #    - openvpn
