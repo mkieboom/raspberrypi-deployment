@@ -10,3 +10,6 @@
       url: "{{dhcpcd_conf_url}}"
       dest: /etc/dhcpcd.conf
       force: yes
+
+  - name: Restart wlan0 network interface
+    shell: "ifconfig wlan0 down && sleep 1 && ifconfig wlan0 up"
