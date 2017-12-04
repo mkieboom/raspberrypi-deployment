@@ -14,5 +14,5 @@ timezone: Europe/Amsterdam
 
 #spotify_device_name:
 
-wpa_supplicant_conf_url: https://github.com/mkieboom/raspberrypi-deployment/blob/master/roles/wifi-config/tasks/wpa_supplicant.conf
+wpa_supplicant_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/wifi-config/tasks/wpa_supplicant.conf
 dhcpcd_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/wifi-config/tasks/dhcpcd.conf
