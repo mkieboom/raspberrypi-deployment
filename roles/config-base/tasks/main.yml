@@ -30,8 +30,8 @@
   - name: Generate the locale for en_US UTF8
     shell: locale-gen
 
-  - name: Set timezone to Europe/Amsterdam
-    timezone: name={{timezone}}
+  - name: Set timezone to "{{timezone}}"
+    timezone: name="{{timezone}}"
 
   - name: Set the hostname
     hostname: name="{{hostname}}"
@@ -42,18 +42,9 @@
       regexp: '^127.0.1.1'
       line: '127.0.1.1  {{hostname}}'
 
-# TODO: Set IP address
-# vim /etc/dhcpcd.conf
-# interface eth0
-# static ip_address=192.168.1.10/24
-# static routers=192.168.1.1
-# static domain_name_servers=192.168.1.1
-
   - name: Remove the user 'pi'
     user: name=pi state=absent remove=yes
     register: command_result
     failed_when: "command_result|failed and 'user pi is currently used' not in command_result.msg"
     ignore_errors: yes
     
-
-

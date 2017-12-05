@@ -1,6 +1,5 @@
 # Version information
 #hostname: 
-#ipaddress: 
 
 timezone: Europe/Amsterdam
 
@@ -8,7 +7,7 @@ timezone: Europe/Amsterdam
 # User information
 #username: 
 #password: 
-#usergroups: 
+usergroups: adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi
 
 #sshkey: 
 
@@ -17,6 +16,5 @@ timezone: Europe/Amsterdam
 
 wlan_interface: wlan0
 
-auto_refresh_wifi_networks: yes
-wpa_supplicant_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/wifi-config/tasks/wpa_supplicant.conf
-dhcpcd_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/wifi-config/tasks/dhcpcd.conf
+wpa_supplicant_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/config-wifi/tasks/wpa_supplicant.conf
+dhcpcd_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/config-wifi/tasks/dhcpcd.conf
