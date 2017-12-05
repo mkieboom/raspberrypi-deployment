@@ -11,7 +11,7 @@
 
   - name: Launch the webcam capture docker container
     docker_container:
-      image: mkieboom/raspberrypi-webcam-capture-docker
+      name: mkieboom/raspberrypi-webcam-capture-docker
       restart_policy: always
       restart_retries: 3
       state: present
