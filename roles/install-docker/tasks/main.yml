@@ -1,0 +1,15 @@
+---
+  - name: Download and install Docker
+    shell: curl -sSL get.docker.com | sh >> ansible_docker_install.log
+
+  - name: Make user 'root' part of the 'docker' group
+    user:
+      name: root
+      groups: docker
+      append: yes
+
+  - name: Make user '{{username}}' part of the 'docker' group
+    user:
+      name: {{username}}
+      groups: docker
+      append: yes
