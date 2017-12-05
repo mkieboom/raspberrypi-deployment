@@ -4,7 +4,10 @@
   # Source: https://github.com/moby/moby/issues/35587
   - name: Install Docker 
     apt:
-      name: docker-ce=17.09.0~ce-0~raspbian
+      name: "{{item}}"
+    with_items:
+      - docker-ce=17.09.0~ce-0~raspbian
+      - docker-compose
 
   - name: Make user 'root' part of the 'docker' group
     user:
