@@ -10,6 +10,6 @@
 
   - name: Make user '{{username}}' part of the 'docker' group
     user:
-      name: {{username}}
+      name: "{{username}}"
       groups: docker
       append: yes
