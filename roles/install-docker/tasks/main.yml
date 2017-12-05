@@ -3,7 +3,8 @@
   # "cgroups: memory cgroup not supported on this system"
   # Source: https://github.com/moby/moby/issues/35587
   - name: Install Docker 
-    apt: docker-ce=17.09.0~ce-0~raspbian
+    apt:
+      name: docker-ce=17.09.0~ce-0~raspbian
 
   - name: Make user 'root' part of the 'docker' group
     user:
