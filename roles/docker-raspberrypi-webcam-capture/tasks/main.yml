@@ -1,0 +1,10 @@
+---
+  - name: Install Docker 
+    git:
+      repo: https://github.com/mkieboom/raspberrypi-webcam-capture-docker
+      dest: ~/
+
+  - name: Build an image and push it to a private repo
+    docker_image:
+      path: ~/raspberrypi-webcam-capture-docker/
+      name: registry.ansible.com/chouseknecht/sinatra
