@@ -1,6 +1,15 @@
 ---
-  - name: Download and install Docker
-    shell: curl -sSL get.docker.com | sh >> ansible_docker_install.log
+#  - name: Download and install Docker
+#    shell: curl -sSL get.docker.com | sh >> ansible_docker_install.log
+
+  - name: Download Docker install script
+    get_url:
+      url: http://get.docker.com
+      dest: ansible_docker_install.sh
+      mode: 0750
+
+  - name: Install Docker
+    shell: ansible_docker_install.sh >> ansible_docker_install.log
 
   - name: Make user 'root' part of the 'docker' group
     user:
