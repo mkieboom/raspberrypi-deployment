@@ -1,10 +1,22 @@
 ---
-  - name: Install Docker 
+  - name: Clone webcam capture docker repository
     git:
       repo: https://github.com/mkieboom/raspberrypi-webcam-capture-docker
-      dest: ~/
+      dest: ~/raspberrypi-webcam-capture-docker/
 
-  - name: Build an image and push it to a private repo
+  - name: Build the Docker image
     docker_image:
       path: ~/raspberrypi-webcam-capture-docker/
-      name: registry.ansible.com/chouseknecht/sinatra
+      name: mkieboom/raspberrypi-webcam-capture-docker
+
+  - name: Launch the webcam capture docker container
+    docker_container:
+      image: mkieboom/raspberrypi-webcam-capture-docker
+      restart_policy: always
+      restart_retries: 3
+      state: present
+      recreate: yes
+      devices:
+        - "/dev/video0:/dev/video0"
+      volumes:
+        - "/tmp/webcam:/tmp/webcam"
