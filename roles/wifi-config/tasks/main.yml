@@ -11,5 +11,5 @@
       dest: /etc/dhcpcd.conf
       force: yes
 
-  - name: Restart wlan0 network interface
-    shell: "ifconfig wlan0 down && sleep 1 && ifconfig wlan0 up"
+  - name: Restart {{wlan_interface}} network interface
+    shell: "wpa_cli terminate ; sleep 2 ; wpa_supplicant -B -i {{wlan_interface}} -c /etc/wpa_supplicant/wpa_supplicant.conf"
