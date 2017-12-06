@@ -1,21 +1,27 @@
 ---
-  - name: Check if Docker is already installed
-    package:
-      name: docker*
-      state: present
-    check_mode: true
-    register: docker_check
+  # - name: Check if Docker is already installed
+  #   package:
+  #     name: docker*
+  #     state: present
+  #   check_mode: true
+  #   register: docker_check
 
-  - name: Download Docker install script
-    get_url:
-      url: http://get.docker.com
-      dest: /tmp/ansible_docker_install.sh
-      mode: 0750
-    when: docker_check.changed 
+  # - name: Download Docker install script
+  #   get_url:
+  #     url: http://get.docker.com
+  #     dest: /tmp/ansible_docker_install.sh
+  #     mode: 0750
+  #   when: docker_check.changed 
 
-  - name: Install Docker
-    shell: /tmp/ansible_docker_install.sh >> ansible_docker_install.log
-    when: docker_check.changed 
+  # - name: Install Docker
+  #   shell: /tmp/ansible_docker_install.sh >> ansible_docker_install.log
+  #   when: docker_check.changed 
+
+  - name: Install Docker gpg key
+    shell: curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+
+  - name: Install Docker repo
+    shell: echo "deb [arch=armhf] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) edge" | sudo tee /etc/apt/sources.list.d/docker.list
 
   # Below Docker install doesn't work on the Pi as there are 2 bugs:
   #
@@ -25,11 +31,11 @@
   #
   # Issue with python-requests package version > 2.11.1
   #
-  - name: Install Docker 
+  - name: Install Docker Compose
     apt:
       name: "{{item}}"
     with_items:
-#      - docker-ce=17.09.0~ce-0~raspbian
+      - docker-ce=17.09.0~ce-0~raspbian
       - docker-compose
 
   - name: Make user 'root' part of the 'docker' group
