@@ -12,6 +12,9 @@
   #  shell: /tmp/ansible_docker_install.sh >> ansible_docker_install.log
 
 
+# python requests
+#http://pypi.python.org/packages/2e/ad/e627446492cc374c284e82381215dcd9a0a87c4f6e90e9789afefe6da0ad/requests-2.11.1.tar.gz
+
   # Below Docker install doesn't work on the Pi as there are 2 bugs:
   #
   # We need to install an older version of Docker as the latest version throws following error:
@@ -38,3 +41,25 @@
       name: "{{username}}"
       groups: docker
       append: yes
+
+
+# Install pip
+apt-get install python3-pip
+pip3 install pipenv
+
+# Install requests 2.11.1
+pip3 install requests==2.11.1
+
+--allow-downgrades
+
+
+
+
+wget http://ftp.nl.debian.org/debian/pool/main/r/requests/python-requests_2.11.1-1~bpo8+1_all.deb
+
+
+
+apt-get install docker-ce=17.09.0~ce-0~raspbian
+pip install docker-compose
+pip install docker-py
+

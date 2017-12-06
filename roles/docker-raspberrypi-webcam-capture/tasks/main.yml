@@ -10,13 +10,15 @@
       name: mkieboom/raspberrypi-webcam-capture-docker
 
   - name: Launch the webcam capture docker container
-    docker_container:
-      name: mkieboom/raspberrypi-webcam-capture-docker
-      restart_policy: always
-      restart_retries: 3
-      state: present
-      recreate: yes
-      devices:
-        - "/dev/video0:/dev/video0"
-      volumes:
-        - "/tmp/webcam:/tmp/webcam"
+    shell: docker run -d --restart=always --device=/dev/video0:/dev/video0 -v /tmp/webcam:/tmp/webcam mkieboom/raspberrypi-webcam-capture-docker
+
+#  - name: Launch the webcam capture docker container
+#    docker_container:
+#      image: mkieboom/raspberrypi-webcam-capture-docker
+#      name: raspberrypi-webcam-capture-docker
+#      restart_policy: always
+#      state: present
+#      devices:
+#        - "/dev/video0:/dev/video0"
+#      volumes:
+#        - "/tmp/webcam:/tmp/webcam"
