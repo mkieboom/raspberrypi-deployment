@@ -8,4 +8,5 @@
 #    - install-wordpress
 #    - install-openvpn
     - docker-webcam-capture
+    - docker-webcam-stream
 #    - docker-streamsets-edge
