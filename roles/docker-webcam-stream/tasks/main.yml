@@ -1,7 +1,7 @@
 ---
   - name: Clone webcam stream docker repository
     git:
-      repo: https://github.com/mkieboom/mkieboom/raspberrypi-webcam-stream-docker
+      repo: https://github.com/mkieboom/raspberrypi-webcam-stream-docker
       dest: ~/raspberrypi-webcam-stream-docker/
 
   - name: Build the Docker image
