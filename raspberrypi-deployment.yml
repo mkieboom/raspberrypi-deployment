@@ -2,7 +2,7 @@
   hosts: all
   roles:
 #    - config-bluetooth # only for Raspbian release prior to 'Stretch'
-    - config-base
+#    - config-base
     - config-wifi
     - install-docker
 #    - install-wordpress
