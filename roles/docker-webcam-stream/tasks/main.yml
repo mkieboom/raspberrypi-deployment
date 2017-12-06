@@ -10,4 +10,4 @@
       name: mkieboom/raspberrypi-webcam-stream-docker
 
   - name: Launch the webcam stream docker container
-    shell: docker run -d --restart=always -name=raspberrypi-webcam-stream-docker -v /tmp/webcam:/input -e MAPR_USER=mapr -e MAPR_PASSWORD=mapr -e MAPR_KAFKA_REST_HOST=MAPRN01 -e MAPR_STREAM=imageclassification-stream -e MAPR_STREAM_TOPIC=webcam-image-events mkieboom/raspberrypi-webcam-stream-docker
+    shell: docker run -d --restart=always --name=raspberrypi-webcam-stream-docker -v /tmp/webcam:/input -e MAPR_USER=mapr -e MAPR_PASSWORD=mapr -e MAPR_KAFKA_REST_HOST=MAPRN01 -e MAPR_STREAM=imageclassification-stream -e MAPR_STREAM_TOPIC=webcam-image-events mkieboom/raspberrypi-webcam-stream-docker
