@@ -1,12 +1,11 @@
 - name: Install software
   hosts: all
   roles:
-#    - config-bluetooth # only for Raspbian release prior to 'Stretch'
-#    - config-base
+#    - config-bluetooth   # only for Raspbian release prior to 'Stretch'
+    - config-base
     - config-wifi
     - install-docker
 #    - install-wordpress
 #    - install-openvpn
-#    - docker-webcam
+    - docker-webcam-capture
 #    - docker-streamsets-edge
-    - docker-raspberrypi-webcam-capture
