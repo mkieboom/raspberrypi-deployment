@@ -41,25 +41,3 @@
       name: "{{username}}"
       groups: docker
       append: yes
-
-
-# Install pip
-apt-get install python3-pip
-pip3 install pipenv
-
-# Install requests 2.11.1
-pip3 install requests==2.11.1
-
---allow-downgrades
-
-
-
-
-wget http://ftp.nl.debian.org/debian/pool/main/r/requests/python-requests_2.11.1-1~bpo8+1_all.deb
-
-
-
-apt-get install docker-ce=17.09.0~ce-0~raspbian
-pip install docker-compose
-pip install docker-py
-
