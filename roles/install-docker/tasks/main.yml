@@ -1,19 +1,21 @@
 ---
-  #- name: Download and install Docker
-  #  shell: curl -sSL get.docker.com | sh >> ansible_docker_install.log
+  - name: Check if Docker is already installed
+    package:
+      name: docker*
+      state: present
+    check_mode: true
+    register: docker_check
 
-  #- name: Download Docker install script
-  #  get_url:
-  #    url: http://get.docker.com
-  #    dest: /tmp/ansible_docker_install.sh
-  #    mode: 0750
+  - name: Download Docker install script
+    get_url:
+      url: http://get.docker.com
+      dest: /tmp/ansible_docker_install.sh
+      mode: 0750
+    when: docker_check.changed 
 
-  #- name: Install Docker
-  #  shell: /tmp/ansible_docker_install.sh >> ansible_docker_install.log
-
-
-# python requests
-#http://pypi.python.org/packages/2e/ad/e627446492cc374c284e82381215dcd9a0a87c4f6e90e9789afefe6da0ad/requests-2.11.1.tar.gz
+  - name: Install Docker
+    shell: /tmp/ansible_docker_install.sh >> ansible_docker_install.log
+    when: docker_check.changed 
 
   # Below Docker install doesn't work on the Pi as there are 2 bugs:
   #
@@ -27,7 +29,7 @@
     apt:
       name: "{{item}}"
     with_items:
-      - docker-ce=17.09.0~ce-0~raspbian
+#      - docker-ce=17.09.0~ce-0~raspbian
       - docker-compose
 
   - name: Make user 'root' part of the 'docker' group
