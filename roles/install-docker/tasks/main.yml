@@ -1,13 +1,31 @@
 ---
+  - name: Download and install Docker
+    shell: curl -sSL get.docker.com | sh >> ansible_docker_install.log
+
+  - name: Download Docker install script
+    get_url:
+      url: http://get.docker.com
+      dest: ansible_docker_install.sh
+      mode: 0750
+
+  - name: Install Docker
+    shell: ansible_docker_install.sh >> ansible_docker_install.log
+
+
+  # Below Docker install doesn't work on the Pi as there are 2 bugs:
+  #
   # We need to install an older version of Docker as the latest version throws following error:
   # "cgroups: memory cgroup not supported on this system"
   # Source: https://github.com/moby/moby/issues/35587
-  - name: Install Docker 
-    apt:
-      name: "{{item}}"
-    with_items:
-      - docker-ce=17.09.0~ce-0~raspbian
-      - docker-compose
+  #
+  # Issue with python-requests package version > 2.11.1
+  #
+  #- name: Install Docker 
+  #  apt:
+  #    name: "{{item}}"
+  #  with_items:
+  #    - docker-ce=17.09.0~ce-0~raspbian
+  #    - docker-compose
 
   - name: Make user 'root' part of the 'docker' group
     user:
