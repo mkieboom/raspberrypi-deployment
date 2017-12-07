@@ -21,6 +21,7 @@
     apt_key:
       url: https://download.docker.com/linux/raspbian/gpg
       state: present
+      validate_certs: no
 
   #- name: Download Docker gpg key
   #  get_url:
