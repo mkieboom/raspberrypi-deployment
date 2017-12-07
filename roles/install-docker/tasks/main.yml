@@ -17,19 +17,19 @@
   #   shell: /tmp/ansible_docker_install.sh >> ansible_docker_install.log
   #   when: docker_check.changed 
 
-  - name: Install Docker gpg key
-    apt_key:
-      url: https://download.docker.com/linux/raspbian/gpg
-      state: present
-      validate_certs: no
+  #- name: Install Docker gpg key
+  #  apt_key:
+  #    url: https://download.docker.com/linux/raspbian/gpg
+  #    state: present
+  #    validate_certs: no
 
   #- name: Download Docker gpg key
   #  get_url:
   #    url: https://download.docker.com/linux/raspbian/gpg
   #    dest: /tmp/gpg
 
-  #- name: Install Docker gpg key
-  #  shell: curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+  - name: Install Docker gpg key
+    shell: curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
 
   - name: Install Docker repo
     shell: echo "deb [arch=armhf] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) edge" | sudo tee /etc/apt/sources.list.d/docker.list
@@ -45,6 +45,7 @@
   - name: Install Docker Compose
     apt:
       name: "{{item}}"
+      update_cache: yes
     with_items:
       - docker-ce=17.09.0~ce-0~raspbian
       - docker-compose
