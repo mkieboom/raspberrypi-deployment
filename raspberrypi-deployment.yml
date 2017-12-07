@@ -3,10 +3,10 @@
   roles:
 #    - config-bluetooth   # only for Raspbian release prior to 'Stretch'
     - config-base
-    - config-wifi
     - install-docker
 #    - install-wordpress
 #    - install-openvpn
     - docker-webcam-capture
 #    - docker-webcam-stream
 #    - docker-streamsets-edge
+    - config-wifi        # config wifi as the last step as it will restart the wlan interface potentially dropping the connection
