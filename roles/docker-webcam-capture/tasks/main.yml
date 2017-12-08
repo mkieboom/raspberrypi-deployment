@@ -34,3 +34,9 @@
         - "/dev/video0:/dev/video0"
       volumes:
         - "/tmp/webcam:/tmp/webcam"
+      env:
+        MAPR_USER=mapr
+        MAPR_PASSWORD=mapr
+        MAPR_HOST=192.168.1.221
+        MAPR_STREAM=imageclassification-stream
+        MAPR_STREAM_TOPIC=webcam-image-events
