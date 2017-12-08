@@ -9,6 +9,15 @@
       path: ~/raspberrypi-webcam-capture-docker/
       name: mkieboom/raspberrypi-webcam-capture-docker
 
+  - name: Remove the webcam capture docker container if it is already running
+    docker_container:
+      image: mkieboom/raspberrypi-webcam-capture-docker
+      name: raspberrypi-webcam-capture-docker
+      restart_policy: always
+      state: present
+      recreate: yes
+      force_kill: yes
+
 #  - name: Stop any existing webcam capture docker container
 #    shell: docker stop $(docker ps -qa --filter name=raspberrypi-webcam-capture-docker)
 #    ignore_errors: yes
@@ -27,7 +36,7 @@
       image: mkieboom/raspberrypi-webcam-capture-docker
       name: raspberrypi-webcam-capture-docker
       restart_policy: always
-      state: present
+      state: started
       recreate: yes
       force_kill: yes
       devices:
