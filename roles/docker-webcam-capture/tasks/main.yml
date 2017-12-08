@@ -9,26 +9,28 @@
       path: ~/raspberrypi-webcam-capture-docker/
       name: mkieboom/raspberrypi-webcam-capture-docker
 
-  - name: Stop any existing webcam capture docker container
-    shell: docker stop $(docker ps -qa --filter name=raspberrypi-webcam-capture-docker)
-    ignore_errors: yes
+#  - name: Stop any existing webcam capture docker container
+#    shell: docker stop $(docker ps -qa --filter name=raspberrypi-webcam-capture-docker)
+#    ignore_errors: yes
 
-  - name: Remove any existing webcam capture docker container
-    shell: docker rm -f $(docker ps -aq --filter name=raspberrypi-webcam-capture-docker)
-    ignore_errors: yes
-
-  - name: Launch the webcam capture docker container
-    shell: docker run -d --restart=always --name=raspberrypi-webcam-capture-docker --device=/dev/video0:/dev/video0 -v /tmp/webcam:/tmp/webcam -e MAPR_USER=mapr -e MAPR_PASSWORD=mapr -e MAPR_HOST=192.168.1.221 -e MAPR_STREAM=imageclassification-stream -e MAPR_STREAM_TOPIC=webcam-image-events mkieboom/raspberrypi-webcam-capture-docker
-    register: command_result
-    ignore_errors: yes
+#  - name: Remove any existing webcam capture docker container
+#    shell: docker rm -f $(docker ps -aq --filter name=raspberrypi-webcam-capture-docker)
+#    ignore_errors: yes
 
 #  - name: Launch the webcam capture docker container
-#    docker_container:
-#      image: mkieboom/raspberrypi-webcam-capture-docker
-#      name: raspberrypi-webcam-capture-docker
-#      restart_policy: always
-#      state: present
-#      devices:
-#        - "/dev/video0:/dev/video0"
-#      volumes:
-#        - "/tmp/webcam:/tmp/webcam"
+#    shell: docker run -d --restart=always --name=raspberrypi-webcam-capture-docker --device=/dev/video0:/dev/video0 -v /tmp/webcam:/tmp/webcam -e MAPR_USER=mapr -e MAPR_PASSWORD=mapr -e MAPR_HOST=192.168.1.221 -e MAPR_STREAM=imageclassification-stream -e MAPR_STREAM_TOPIC=webcam-image-events mkieboom/raspberrypi-webcam-capture-docker
+#    register: command_result
+#    ignore_errors: yes
+
+  - name: Launch the webcam capture docker container
+    docker_container:
+      image: mkieboom/raspberrypi-webcam-capture-docker
+      name: raspberrypi-webcam-capture-docker
+      restart_policy: always
+      state: present
+      recreate: yes
+      force_kill: yes
+      devices:
+        - "/dev/video0:/dev/video0"
+      volumes:
+        - "/tmp/webcam:/tmp/webcam"
