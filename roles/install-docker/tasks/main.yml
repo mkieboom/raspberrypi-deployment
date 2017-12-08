@@ -42,7 +42,7 @@
   #
   # Issue with python-requests package version > 2.11.1
   #
-  - name: Install Docker Compose
+  - name: Install Docker-CE and Docker Compose
     apt:
       name: "{{item}}"
       update_cache: yes
