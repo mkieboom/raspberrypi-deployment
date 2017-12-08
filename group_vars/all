@@ -12,7 +12,7 @@ usergroups: adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,
 #sshkey: 
 
 #vpn_enable:
-#vpn_ovpn_config:
+#vpn_ovpn_config_file:
 #vpn_user: 
 #vpn_password: 
 

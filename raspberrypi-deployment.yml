@@ -1,5 +1,7 @@
 - name: Install software
   hosts: all
+  vars:
+     vpn_ovpn_config: "{{ lookup('file', '{{vpn_ovpn_config_file}}') }}"
   roles:
 #    - config-bluetooth   # only for Raspbian release prior to 'Stretch'
     - config-base
