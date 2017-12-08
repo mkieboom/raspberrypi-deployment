@@ -11,6 +11,10 @@
 
   - name: Launch the webcam capture docker container
     shell: docker run -d --restart=always --name=raspberrypi-webcam-capture-docker --device=/dev/video0:/dev/video0 -v /tmp/webcam:/tmp/webcam -e MAPR_USER=mapr -e MAPR_PASSWORD=mapr -e MAPR_HOST=192.168.1.221 -e MAPR_STREAM=imageclassification-stream -e MAPR_STREAM_TOPIC=webcam-image-events mkieboom/raspberrypi-webcam-capture-docker
+    register: command_result
+    failed_when: "command_result|failed and 'error gathering device information while adding custom device' not in command_result.msg"
+    ignore_errors: yes
+
 #  - name: Launch the webcam capture docker container
 #    docker_container:
 #      image: mkieboom/raspberrypi-webcam-capture-docker
