@@ -11,6 +11,10 @@ usergroups: adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,
 
 #sshkey: 
 
+#vpn_enable:
+#vpn_ovpn_config:
+#vpn_user: 
+#vpn_password: 
 
 #spotify_device_name:
 
@@ -18,3 +22,5 @@ wlan_interface: wlan0
 
 wpa_supplicant_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/config-wifi/tasks/wpa_supplicant.conf
 dhcpcd_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/config-wifi/tasks/dhcpcd.conf
+
+

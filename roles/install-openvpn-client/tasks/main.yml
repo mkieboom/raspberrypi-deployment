@@ -1,0 +1,35 @@
+---
+  - name: Install OpenVPN
+    apt:
+      name: openvpn
+      update_cache: yes
+
+  - name: Configure .ovpn file
+    copy: content="{{vpn_ovpn_config}}" dest=/etc/openvpn/myvpn
+
+  - name: Add the VPN username to a config file
+    lineinfile:
+      path: /etc/openvpn/login.txt
+      line: "{{vpn_user}}"
+      state: present
+      create: yes
+
+  - name: Add the VPN password to a config file
+    lineinfile:
+      path: /etc/openvpn/login.txt
+      line: "{{vpn_password}}"
+      state: present
+      create: yes
+
+  - name: Add the username/password config into the ovpn config file
+    lineinfile:
+      path: /etc/openvpn/myvpn
+      regexp: "^auth-user-pass"
+      line: "auth-user-pass /etc/openvpn/login.txt"
+      state: present
+
+#  - name: Start the OpenVPN Client service
+#    systemd: 
+#      name: openvpn@myvpn.service
+#      state: started
+#      enabled: yes
