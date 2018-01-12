@@ -35,5 +35,6 @@
         MAPR_PASSWORD=mapr
         MAPR_HOST=172.16.4.11
         MAPR_VOLUME=/image-classification/input/
-        MAPR_STREAM=imageclassification-stream
+        MAPR_IMAGE=images/
+        MAPR_STREAM=streams/imageclassification-stream
         MAPR_STREAM_TOPIC=image-events
