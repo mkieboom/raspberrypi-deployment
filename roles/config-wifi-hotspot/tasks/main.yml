@@ -1,6 +1,4 @@
 ---
-
-sudo systemctl stop dnsmasq' and then 'sudo systemctl stop hostapd
   - name: Install dnsmasq and hostapd
     apt:
       name: "{{item}}"
