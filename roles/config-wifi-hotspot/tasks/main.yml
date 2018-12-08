@@ -49,5 +49,27 @@
       - hostapd
       - dhcpcd
 
+  - name: Configure NAT in iptables (1 of 3)
+    shell: iptables --table nat --append POSTROUTING --out-interface eth0 --jump MASQUERADE
+  - name: Configure NAT in iptables (2 of 3)
+    shell: iptables --append FORWARD --in-interface eth0 --out-interface wlan0 --match state --state RELATED,ESTABLISHED --jump ACCEPT
+  - name: Configure NAT in iptables (3 of 3)
+    shell: iptables --append FORWARD --in-interface wlan0 --out-interface eth0 --jump ACCEPT
+
+  - name: Export iptables
+    shell: iptables-save > /etc/iptables.ipv4.nat
+
+  - name: Enable ipv4 forward in /etc/sysctl.conf
+    shell: echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf
+
+  - name: Enable ipv4 forward in /proc/sys/net/ipv4/ip_forward
+    shell: echo 1 > /proc/sys/net/ipv4/ip_forward
+
+  - name: Ansible lineinfile insertbefore example
+    lineinfile:
+      dest: /etc/rc.local
+      line: 'iptables-restore < /etc/iptables.ipv4.nat'
+      insertbefore: 'exit 0'
+
   - name: Restart {{wlan_interface}} network interface
     shell: "wpa_cli terminate ; sleep 2 ; wpa_supplicant -B -i {{wlan_interface}} -c /etc/wpa_supplicant/wpa_supplicant.conf"
