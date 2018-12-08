@@ -1,13 +1,13 @@
 ---
   - name: Download wpa_supplicant.conf with Wifi networks so the Raspberry Pi will automatically connect when in range
     get_url:
-      url: "{{wpa_supplicant_conf_url}}"
+      url: "{{wifi_client_wpa_supplicant_conf_url}}"
       dest: /etc/wpa_supplicant/wpa_supplicant.conf
       force: yes
 
   - name: Download dhcpcd.conf for potential static ip configuration for the Wifi networks
     get_url:
-      url: "{{dhcpcd_conf_url}}"
+      url: "{{wifi_client_dhcpcd_conf_url}}"
       dest: /etc/dhcpcd.conf
       force: yes
 

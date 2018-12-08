@@ -1,0 +1,49 @@
+---
+
+sudo systemctl stop dnsmasq' and then 'sudo systemctl stop hostapd
+  - name: Install dnsmasq and hostapd
+    apt:
+      name: "{{item}}"
+      update_cache: yes
+    with_items:
+      - dnsmasq
+      - hostapd
+
+  - name: Stop the dnsmasq and hostapd service
+    service:
+      name: "{{item}}"
+      state: stopped
+      enabled: yes
+    with_items:
+      - dnsmasq
+      - hostapd
+
+  - name: Download hostapd.conf
+    get_url:
+      url: "{{wifi_hotspot_hostapd_conf_url}}"
+      dest: /etc/hostapd/hostapd.conf
+      force: yes
+
+  - name: Download dhcpcd.conf
+    get_url:
+      url: "{{wifi_hotspot_dhcpcd_conf_url}}"
+      dest: /etc/dhcpcd.conf
+      force: yes
+
+  - name: Download dnsmasq.conf
+    get_url:
+      url: "{{wifi_hotspot_dnsmasq_conf_url}}"
+      dest: /etc/dnsmasq.conf
+      force: yes
+
+  - name: Start the dnsmasq and hostapd service
+    service:
+      name: "{{item}}"
+      state: restarted
+      enabled: yes
+    with_items:
+      - dnsmasq
+      - hostapd
+
+  - name: Restart {{wlan_interface}} network interface
+    shell: "wpa_cli terminate ; sleep 2 ; wpa_supplicant -B -i {{wlan_interface}} -c /etc/wpa_supplicant/wpa_supplicant.conf"
