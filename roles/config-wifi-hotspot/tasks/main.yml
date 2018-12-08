@@ -1,4 +1,6 @@
 ---
+# source: https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md
+
   - name: Install dnsmasq and hostapd
     apt:
       name: "{{item}}"
@@ -22,6 +24,9 @@
       dest: /etc/hostapd/hostapd.conf
       force: yes
 
+  - name: Set DAEMON_CONF in /etc/default/hostapd
+    shell: echo DAEMON_CONF=/etc/hostapd/hostapd.conf >> /etc/default/hostapd
+
   - name: Download dhcpcd.conf
     get_url:
       url: "{{wifi_hotspot_dhcpcd_conf_url}}"
@@ -34,7 +39,7 @@
       dest: /etc/dnsmasq.conf
       force: yes
 
-  - name: Start the dnsmasq and hostapd service
+  - name: Restart the dnsmasq, hostapd and dhcpcd service
     service:
       name: "{{item}}"
       state: restarted
@@ -42,6 +47,7 @@
     with_items:
       - dnsmasq
       - hostapd
+      - dhcpcd
 
   - name: Restart {{wlan_interface}} network interface
     shell: "wpa_cli terminate ; sleep 2 ; wpa_supplicant -B -i {{wlan_interface}} -c /etc/wpa_supplicant/wpa_supplicant.conf"
