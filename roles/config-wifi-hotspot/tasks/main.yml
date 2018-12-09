@@ -74,5 +74,5 @@
       line: 'iptables-restore < /etc/iptables.ipv4.nat'
       insertbefore: 'exit 0'
 
-  - name: Restart {{wlan_interface}} network interface
-    shell: "wpa_cli terminate ; sleep 2 ; wpa_supplicant -B -i {{wlan_interface}} -c /etc/wpa_supplicant/wpa_supplicant.conf"
+#  - name: Restart {{wlan_interface}} network interface
+#    shell: "wpa_cli terminate ; sleep 2 ; wpa_supplicant -B -i {{wlan_interface}} -c /etc/wpa_supplicant/wpa_supplicant.conf"
