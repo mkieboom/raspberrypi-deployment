@@ -1,0 +1,30 @@
+# vpnc service definition
+
+# Place this file in:
+# /lib/systemd/system/vpnc@.service
+
+# Create a vpnc config file:
+# /etc/vpnc/myvpn.conf
+# IPSec gateway "mygateway"
+# IPSec ID "myid"
+# IPSec secret "mysecret"
+# Xauth username "username"
+# Xauth password "password"
+
+# To start the service:
+# systemctl enable vpnc@myvpn
+# systemctl start vpnc@myvpn
+
+[Unit]
+Description=VPNC connection to %i
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/vpnc --pid-file=/run/vpnc@%i.pid /etc/vpnc/%i.conf
+PIDFile=/run/vpnc@%i.pid
+
+[Install]
+WantedBy=multi-user.target
+

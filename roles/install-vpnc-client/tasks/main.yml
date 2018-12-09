@@ -1,0 +1,51 @@
+---
+  - name: Install vpnc IPsec client
+    apt:
+      name: vpnc
+      update_cache: yes
+
+  - name: Add the vpnc@.service definition file
+    copy:
+      content: "vpnc.service.txt"
+      dest: "/lib/systemd/system/vpnc@.service"
+
+  - name: Configure "IPSec gateway" in /etc/vpnc/myvpn.conf
+    lineinfile:
+      dest: /etc/vpnc/myvpn.conf
+      line: IPSec gateway "{{ipsec_gateway}}"
+      state: present
+      create: yes
+
+  - name: Configure "IPSec ID" in /etc/vpnc/myvpn.conf
+    lineinfile:
+      dest: /etc/vpnc/myvpn.conf
+      line: IPSec ID "{{ipsec_id}}"
+      state: present
+      create: yes
+
+  - name: Configure "IPSec secret" in /etc/vpnc/myvpn.conf
+    lineinfile:
+      dest: /etc/vpnc/myvpn.conf
+      line: IPSec secret "{{ipsec_secret}}"
+      state: present
+      create: yes
+
+  - name: Configure "IPSec Xauth username" in /etc/vpnc/myvpn.conf
+    lineinfile:
+      dest: /etc/vpnc/myvpn.conf
+      line: Xauth username "{{ipsec_xauth_username}}"
+      state: present
+      create: yes
+
+  - name: Configure "IPSec Xauth password" in /etc/vpnc/myvpn.conf
+    lineinfile:
+      dest: /etc/vpnc/myvpn.conf
+      line: Xauth password "{{ipsec_xauth_password}}"
+      state: present
+      create: yes
+
+  - name: Start the vpnc service
+    systemd: 
+      name: vpnc@myvpn.service
+      state: started
+      enabled: yes
