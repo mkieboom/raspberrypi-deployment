@@ -8,6 +8,7 @@
     with_items:
       - dnsmasq
       - hostapd
+      - whois
 
   - name: Stop the dnsmasq and hostapd service
     service:
@@ -60,12 +61,14 @@
     shell: iptables-save > /etc/iptables.ipv4.nat
 
   - name: Enable ipv4 forward in /etc/sysctl.conf
-    shell: echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf
+    lineinfile:
+      dest: /etc/sysctl.conf
+      line: 'net.ipv4.ip_forward=1'
 
   - name: Enable ipv4 forward in /proc/sys/net/ipv4/ip_forward
     shell: echo 1 > /proc/sys/net/ipv4/ip_forward
 
-  - name: Ansible lineinfile insertbefore example
+  - name: Load the iptables NAT config on boot
     lineinfile:
       dest: /etc/rc.local
       line: 'iptables-restore < /etc/iptables.ipv4.nat'
