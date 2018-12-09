@@ -3,13 +3,6 @@
 
 timezone: Europe/Amsterdam
 
-# IPSec connection details
-ipsec_gateway: "portalx.mapr.com"
-ipsec_id: "maprtech"
-ipsec_secret: "maprmapr"
-ipsec_xauth_username: "mkieboom"
-ipsec_xauth_password: "R%t2MT]VFeaQZJUgoAXHs6DY"
-
 
 # User information
 #username: 
