@@ -5,9 +5,10 @@
       update_cache: yes
 
   - name: Add the vpnc@.service definition file
-    copy:
-      content: "vpnc.service.txt"
+    get_url:
+      url: "{{vpnc_client_service}}"
       dest: "/lib/systemd/system/vpnc@.service"
+      force: yes
 
   - name: Configure "IPSec gateway" in /etc/vpnc/myvpn.conf
     lineinfile:

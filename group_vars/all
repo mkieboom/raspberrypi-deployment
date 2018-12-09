@@ -20,6 +20,9 @@ usergroups: adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,
 
 wlan_interface: wlan0
 
+# config vpnc service url
+vpnc_client_service: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/install-vpnc-client/tasks/vpnc.service.txt
+
 # config wifi client urls
 wifi_client_wpa_supplicant_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/config-wifi-client/tasks/wpa_supplicant.conf
 
