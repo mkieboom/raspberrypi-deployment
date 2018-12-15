@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=MapRQRScanner
+Comment=
+NoDisplay=false
+Exec=/usr/bin/lxterminal -e python3 /qrscanner.py
+NotShowIn=GNOME;KDE;XFCE;
