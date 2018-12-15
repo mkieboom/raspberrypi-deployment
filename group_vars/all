@@ -35,3 +35,6 @@ wifi_hotspot_dhcpcd_conf_url: https://raw.githubusercontent.com/mkieboom/raspber
 
 wifi_hotspot_dnsmasq_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/config-wifi-hotspot/tasks/dnsmasq.conf
 
+# config qr scanner urls
+qrscanner_python_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/install-qr-scanner/tasks/qrscanner.py
+qrscanner_desktop_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/install-qr-scanner/tasks/qrscanner.desktop

@@ -23,3 +23,15 @@
       - opencv-python
       - imutils
       - pyzbar
+
+  - name: Download qrscanner.py
+    get_url:
+      url: "{{qrscanner_python_url}}"
+      dest: /qrscanner.py
+      force: yes
+
+  - name: Download qrscanner.desktop
+    get_url:
+      url: "{{qrscanner_desktop_url}}"
+      dest: /etc/xdg/autostart/qrscanner.desktop
+      force: yes
