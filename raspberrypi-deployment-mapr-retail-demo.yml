@@ -12,4 +12,5 @@
 #    - docker-webcam-capture # bootcamp
 #    - config-wifi-client    # config wifi as the last step as it will restart the wlan interface potentially dropping the connection
     - config-wifi-hotspot
+    - install-qr-scanner
     - install-vpnc-client

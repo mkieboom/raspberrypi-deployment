@@ -1,0 +1,25 @@
+---
+  - name: Install (apt-get) QR Scanner Dependencies
+    apt:
+      name: "{{item}}"
+      update_cache: yes
+    with_items:
+      - python3-pip
+      - python3-numpy
+      - python3-scipy
+      - ipython
+      - libzbar0
+      - libatlas-base-dev
+      - libjasper-dev
+      - libqtgui4
+      - python3-pyqt5
+      - libqt4-test
+
+  - name: Install (pip3) QR Scanner Dependencies
+    pip:
+      name: "{{item}}"
+      executable: pip3
+    with_items:
+      - opencv-python
+      - imutils
+      - pyzbar
