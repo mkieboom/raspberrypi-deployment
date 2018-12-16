@@ -23,6 +23,7 @@
       - opencv-python
       - imutils
       - pyzbar
+      - jsonmerge
 
   - name: Download qrscanner.py
     get_url:
@@ -30,8 +31,14 @@
       dest: /qrscanner.py
       force: yes
 
-  - name: Download qrscanner.desktop
+  - name: Download qrscanner.desktop to autostart
     get_url:
       url: "{{qrscanner_desktop_url}}"
       dest: /etc/xdg/autostart/qrscanner.desktop
+      force: yes
+
+  - name: Download qrscanner.desktop to user desktop
+    get_url:
+      url: "{{qrscanner_desktop_url}}"
+      dest: /home/pi/Desktop/qrscanner.desktop
       force: yes
