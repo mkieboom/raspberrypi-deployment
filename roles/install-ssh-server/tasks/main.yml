@@ -6,8 +6,8 @@
       - ssh
 
    # Launch ssh service
-   - name: Start the ssh service
-     service:
-       name: ssh
-       state: restarted
-       enabled: yes
+  - name: Start the ssh service
+    service:
+      name: ssh
+      state: restarted
+      enabled: yes

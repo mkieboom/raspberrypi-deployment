@@ -6,8 +6,8 @@
       - realvnc-vnc-server
 
    # Launch vnc server service
-   - name: Start the vnc server service
-     service:
-       name: vncserver-x11-serviced
-       state: restarted
-       enabled: yes
+  - name: Start the vnc server service
+    service:
+      name: vncserver-x11-serviced
+      state: restarted
+      enabled: yes
