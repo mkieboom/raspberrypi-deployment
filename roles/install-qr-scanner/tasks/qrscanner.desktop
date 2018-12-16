@@ -1,7 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=MapRQRScanner
+Name=Restart QR Scanner
 Comment=
+Icon=lxterminal
 NoDisplay=false
 Exec=/usr/bin/lxterminal -e python3 /qrscanner.py
 NotShowIn=GNOME;KDE;XFCE;
