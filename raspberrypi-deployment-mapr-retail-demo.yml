@@ -4,6 +4,8 @@
      vpn_ovpn_config: "{{ lookup('file', '{{vpn_ovpn_config_file}}') }}"
   roles:
 #    - config-bluetooth   # only for Raspbian release prior to 'Stretch'
+    - install-ssh-server
+    - install-vnc-server
     - config-base
 #    - install-docker
 #    - install-wordpress
