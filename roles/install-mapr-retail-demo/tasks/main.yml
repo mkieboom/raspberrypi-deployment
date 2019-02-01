@@ -1,5 +1,8 @@
 ---
 
+  - name: Store MapR cluster IP in /mapr_cluster_ip.txt
+    shell: echo {{mapr_cluster_ip}} > /mapr_cluster_ip.txt
+
   - name: Download get_connected_devices.sh
     get_url:
       url: "{{get_connected_devices_url}}"
