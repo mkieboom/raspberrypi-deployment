@@ -38,3 +38,7 @@ wifi_hotspot_dnsmasq_conf_url: https://raw.githubusercontent.com/mkieboom/raspbe
 # config qr scanner urls
 qrscanner_python_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/install-qr-scanner/tasks/qrscanner.py
 qrscanner_desktop_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/install-qr-scanner/tasks/qrscanner.desktop
+
+# config get connected devices urls
+get_connected_devices_url:
+get_connected_devices_desktop_url: 

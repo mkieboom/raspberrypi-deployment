@@ -1,0 +1,19 @@
+---
+
+  - name: Download get_connected_devices.sh
+    get_url:
+      url: "{{get_connected_devices_url}}"
+      dest: /get_connected_devices.sh
+      force: yes
+
+  - name: Download get_connected_devices.desktop to autostart
+    get_url:
+      url: "{{get_connected_devices_desktop_url}}"
+      dest: /etc/xdg/autostart/get_connected_devices.desktop
+      force: yes
+
+  - name: Download qrscanner.desktop to user desktop
+    get_url:
+      url: "{{get_connected_devices_desktop_url}}"
+      dest: /home/pi/Desktop/get_connected_devices.desktop
+      force: yes

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Restart Get Connected Devices
+Comment=
+Icon=lxterminal
+NoDisplay=false
+Exec=/usr/bin/lxterminal -e /get_connected_devices.sh
+NotShowIn=GNOME;KDE;XFCE;
