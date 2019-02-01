@@ -23,6 +23,19 @@ do
   if [ -z "$CONNECTED_DEVICE_LIST" ]
   then
     echo "$DATETIME - No wifi clients connected"
+
+      # No devices connected, upload empty json document
+      DEVICE_MAC=""
+      DEVICE_SIGNAL=""
+
+      # Create a JSON message
+      DEVICE_JSON="{\"_id\":\"$DATETIME$DEVICE_MAC\", \"datetime\": \"$DATETIME\", \"sensor\": \"$SENSOR_NAME\", \"mac\": \"$DEVICE_MAC\", \"signal\": \"$DEVICE_SIGNAL\"}"
+      echo $DEVICE_JSON
+      echo $DEVICE_JSON > /tmp/device.json
+
+      # Upload to MapR Cluster
+      curl $MAPR_CLUSTER_REST_ENDPOINT -H 'X-SDC-APPLICATION-ID: mapr' -H 'Content-Type: application/json' -d @/tmp/device.json
+
   else
 
     # Loop through all connected devices and push them to the MapR cluster
