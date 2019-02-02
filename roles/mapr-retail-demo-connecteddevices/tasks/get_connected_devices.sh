@@ -57,6 +57,6 @@ do
   fi
 
   # Sleep and start over again
-  sleep 3
+  sleep 1
 
 done
