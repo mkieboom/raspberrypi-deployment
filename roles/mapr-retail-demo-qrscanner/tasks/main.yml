@@ -36,6 +36,15 @@
   - name: Make qrscanner_closestdevice.sh executable
     shell: chmod +x /qrscanner_closestdevice.sh
 
+  - name: Download upload_scanned_devices.sh
+    get_url:
+      url: "{{upload_scanned_devices}}"
+      dest: /upload_scanned_devices.sh
+      force: yes
+
+  - name: Make upload_scanned_devices.sh executable
+    shell: chmod +x /upload_scanned_devices.sh
+
   - name: Download qrscanner.py
     get_url:
       url: "{{qrscanner_python_url}}"

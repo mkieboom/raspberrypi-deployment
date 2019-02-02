@@ -85,6 +85,8 @@ while True:
 			outputclosest.flush()
 			outputclosest.close()
 
+			# Upload to the MapR cluster
+			uploadToCluser = check_output(["/upload_scanned_devices.sh"]).decode('utf-8')
 
 			found.add(barcodeData)
 

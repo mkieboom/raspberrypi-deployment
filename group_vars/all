@@ -39,6 +39,7 @@ wifi_hotspot_dnsmasq_conf_url: https://raw.githubusercontent.com/mkieboom/raspbe
 qrscanner_python_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-qrscanner/tasks/qrscanner.py
 qrscanner_desktop_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-qrscanner/tasks/qrscanner.desktop
 qrscanner_closestdevice: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-qrscanner/tasks/qrscanner_closestdevice.sh
+upload_scanned_devices: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-qrscanner/tasks/upload_scanned_devices.sh
 
 # config get connected devices urls
 get_connected_devices_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-connecteddevices/tasks/get_connected_devices.sh
