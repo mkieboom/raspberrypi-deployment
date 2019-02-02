@@ -1,4 +1,3 @@
-cat <<EOF > /qrscanner.py
 # USAGE
 # python3 qrscanner.py
 
@@ -102,4 +101,3 @@ while True:
 print("[INFO] cleaning up...")
 cv2.destroyAllWindows()
 vs.stop()
-EOF
