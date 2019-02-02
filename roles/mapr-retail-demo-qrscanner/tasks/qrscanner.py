@@ -1,30 +1,39 @@
+cat <<EOF > /qrscanner.py
 # USAGE
 # python3 qrscanner.py
+
+# source: https://www.pyimagesearch.com/2018/05/21/an-opencv-barcode-and-qr-code-scanner-with-zbar/
 
 # import the necessary packages
 from imutils.video import VideoStream
 from pyzbar import pyzbar
+#from subprocess import call
+from subprocess import check_output
+from jsonmerge import merge
 import argparse
 import datetime
 import imutils
 import time
 import cv2
+import re
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-o", "--output", type=str, default="barcodes.csv",
-	help="path to output CSV file containing barcodes")
+ap.add_argument("-q", "--outputqrcode", type=str, default="/tmp/qrcode.json",
+	help="path to output json file containing scanned barcode")
+ap.add_argument("-c", "--outputclosest", type=str, default="/tmp/closest.json",
+	help="path to output json file containing closest device")
 args = vars(ap.parse_args())
+
 
 # initialize the video stream and allow the camera sensor to warm up
 print("[INFO] starting video stream...")
+# Use a USB connected Webcam
 vs = VideoStream(src=0).start()
+# Use the Raspberry Pi camera
 #vs = VideoStream(usePiCamera=True).start()
 time.sleep(2.0)
 
-# open the output CSV file for writing and initialize the set of
-# barcodes found thus far
-csv = open(args["output"], "w")
 found = set()
 
 # loop over the frames from the video stream
@@ -37,6 +46,8 @@ while True:
 
 	# find the barcodes in the frame and decode each of the barcodes
 	barcodes = pyzbar.decode(frame)
+
+
 
 	# loop over the detected barcodes
 	for barcode in barcodes:
@@ -55,25 +66,40 @@ while True:
 		cv2.putText(frame, text, (x, y - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 
-		# if the barcode text is currently not in our CSV file, write
-		# the timestamp + barcode to disk and update the set
 		if barcodeData not in found:
-			print("[INFO] New QR code scanned")
-			csv.write("{},{}\n".format(datetime.datetime.now(),
-				barcodeData))
-			csv.flush()
+			print("[INFO] New QR code scanned: {}".format(barcodeData))
+
+			# Get the closest device
+			closestDevice = check_output(["/qrscanner_closestdevice.sh"]).decode('utf-8')
+			#closestDeviceJSON = "\{{}\}".format(re.findall("{(.*?)}", closestDevice))
+			#result = merge(barcodeData, closestDevice)
+
+			# Store the scanned qr code
+			outputqrcode = open(args["outputqrcode"], "w")
+			outputqrcode.write("{}".format(barcodeData))
+			outputqrcode.flush()
+			outputqrcode.close()
+
+			# Capture the closest Wifi device and store it
+			outputclosest = open(args["outputclosest"], "w")
+			outputclosest.write("{}".format(closestDevice))
+			outputclosest.flush()
+			outputclosest.close()
+
+
 			found.add(barcodeData)
 
 	# show the output frame
 	cv2.imshow("Barcode Scanner", frame)
 	key = cv2.waitKey(1) & 0xFF
  
+
 	# if the q key was pressed, break from the loop
 	if key == ord("q"):
 		break
 
 # close the output CSV file do a bit of cleanup
 print("[INFO] cleaning up...")
-csv.close()
 cv2.destroyAllWindows()
 vs.stop()
+EOF

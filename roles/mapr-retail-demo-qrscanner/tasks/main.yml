@@ -14,6 +14,7 @@
       - libqtgui4
       - python3-pyqt5
       - libqt4-test
+      - jq
 
   - name: Install (pip3) QR Scanner Dependencies
     pip:
@@ -24,6 +25,16 @@
       - imutils
       - pyzbar
       - jsonmerge
+
+
+  - name: Download qrscanner_closestdevice.sh
+    get_url:
+      url: "{{qrscanner_closestdevice}}"
+      dest: /qrscanner_closestdevice.sh
+      force: yes
+
+  - name: Make qrscanner_closestdevice.sh executable
+    shell: chmod +x /qrscanner_closestdevice.sh
 
   - name: Download qrscanner.py
     get_url:

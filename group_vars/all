@@ -36,9 +36,10 @@ wifi_hotspot_dhcpcd_conf_url: https://raw.githubusercontent.com/mkieboom/raspber
 wifi_hotspot_dnsmasq_conf_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/config-wifi-hotspot/tasks/dnsmasq.conf
 
 # config qr scanner urls
-qrscanner_python_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/install-qr-scanner/tasks/qrscanner.py
-qrscanner_desktop_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/install-qr-scanner/tasks/qrscanner.desktop
+qrscanner_python_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-qrscanner/tasks/qrscanner.py
+qrscanner_desktop_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-qrscanner/tasks/qrscanner.desktop
+qrscanner_closestdevice: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-qrscanner/tasks/qrscanner_closestdevice.sh
 
 # config get connected devices urls
-get_connected_devices_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/install-mapr-retail-demo/tasks/get_connected_devices.sh
-get_connected_devices_desktop_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/install-mapr-retail-demo/tasks/get_connected_devices.desktop
+get_connected_devices_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-connecteddevices/tasks/get_connected_devices.sh
+get_connected_devices_desktop_url: https://raw.githubusercontent.com/mkieboom/raspberrypi-deployment/master/roles/mapr-retail-demo-connecteddevices/tasks/get_connected_devices.desktop
