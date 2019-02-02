@@ -1,8 +1,9 @@
 #!/bin/bash
 
-cat /tmp/qrcode.json | jq -r '(.rows[]|[.datetime,.client_mac,.signal_strength])|@tsv'
-
-cat /tmp/qrcode.json | jq -r '.email,.deviceUuid'
+# Get the cluster IP
+MAPR_CLUSTER_IP=$(cat /mapr_cluster_ip.txt)
+# Construct the rest call to StreamSets running on the MapR Cluster
+MAPR_CLUSTER_REST_ENDPOINT="http://$MAPR_CLUSTER_IP:8001/qrscanneddevices"
 
 # Construct json
 echo '{' > /tmp/qrscanned_device.json
@@ -45,7 +46,8 @@ cat /tmp/closest.json | jq '.signalstrength' >> /tmp/qrscanned_device.json
 echo '}' >> /tmp/qrscanned_device.json
 
 # Upload the json file
+curl $MAPR_CLUSTER_REST_ENDPOINT -H 'X-SDC-APPLICATION-ID: mapr' -H 'Content-Type: application/json' -d @/tmp/qrscanned_device.json
 
 # Cleanup
-# rm -rf /tmp/qrcode.json
-# rm -rf /tmp/closest.json
+rm -rf /tmp/qrcode.json
+rm -rf /tmp/closest.json
