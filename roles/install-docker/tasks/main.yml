@@ -45,11 +45,8 @@
   #- docker-ce=17.09.0~ce-0~raspbian
   - name: Install Docker-CE and Docker Compose
     apt:
-      name: "{{item}}"
+      name: [docker-ce, docker-compose]
       update_cache: yes
-    with_items:
-      - docker-ce
-      - docker-compose
 
   - name: Make user 'root' part of the 'docker' group
     user:
