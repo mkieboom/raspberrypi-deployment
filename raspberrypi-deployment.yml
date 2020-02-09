@@ -7,8 +7,8 @@
     - config-base
     - install-docker
 #    - install-wordpress
-#    - install-openvpn-server
+    - install-openvpn-server
 #    - install-openvpn-client
 #    - docker-webcam-capture # bootcamp
 #    - config-wifi-client    # config wifi as the last step as it will restart the wlan interface potentially dropping the connection
-    - config-wifi-hotspot
+#    - config-wifi-hotspot
