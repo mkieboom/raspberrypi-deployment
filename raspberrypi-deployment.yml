@@ -5,7 +5,8 @@
   roles:
 #    - config-bluetooth   # only for Raspbian release prior to 'Stretch'
     - config-base
-    - install-docker
+#    - install-docker
+    - install-wireguard
 #    - install-wordpress
 #    - install-openvpn-server
 #    - install-openvpn-client

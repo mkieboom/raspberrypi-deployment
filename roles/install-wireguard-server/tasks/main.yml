@@ -1,0 +1,12 @@
+---
+  - name: Install Wireguard repo
+    shell: echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
+
+  - name:
+    shell: printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' > /etc/apt/preferences.d/limit-unstable
+
+  - name: Install Wireguard server
+    apt:
+      name: [wireguard]
+      update_cache: yes
+
