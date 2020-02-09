@@ -42,12 +42,13 @@
   #
   # Issue with python-requests package version > 2.11.1
   #
+  #- docker-ce=17.09.0~ce-0~raspbian
   - name: Install Docker-CE and Docker Compose
     apt:
       name: "{{item}}"
       update_cache: yes
     with_items:
-      - docker-ce=17.09.0~ce-0~raspbian
+      - docker-ce
       - docker-compose
 
   - name: Make user 'root' part of the 'docker' group
