@@ -1,9 +1,7 @@
 ---
   - name: Install ssh service
     apt:
-      name: "{{item}}"
-    with_items:
-      - ssh
+      name: [ssh]
 
    # Launch ssh service
   - name: Start the ssh service

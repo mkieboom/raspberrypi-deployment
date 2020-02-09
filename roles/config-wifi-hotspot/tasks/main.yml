@@ -3,12 +3,8 @@
 
   - name: Install dnsmasq and hostapd
     apt:
-      name: "{{item}}"
+      name: [dnsmasq, hostapd, whois]
       update_cache: yes
-    with_items:
-      - dnsmasq
-      - hostapd
-      - whois
 
   - name: Stop the dnsmasq and hostapd service
     service:

@@ -9,16 +9,9 @@
     apt: name=nginx state=present
 
   - name: Install PHP
-    apt: name={{item}} state=present
-    with_items:
-         - php5-fpm
-         - php5-mysqlnd
-         - php5-xmlrpc
-         - php5-curl
-         - php5-gd
-         - php5-imagick
-         - php5-imap
-         - php5-mcrypt
+    apt:
+      name: [php5-fpm, php5-mysqlnd, php5-xmlrpc, php5-curl, php5-gd, php5-imagick, php5-imap, php5-mcrypt]
+      state: present
 
   - name: Configure Nginx to support .php files
     shell: "sed -ie 's|index index.html index.htm index.nginx-debian.html;|index index.php index.html index.htm index.nginx-debian.html;|g' /etc/nginx/sites-available/default"
@@ -35,10 +28,9 @@
         }
 
   - name: Install MariaDB
-    apt: name={{item}} state=present
-    with_items:
-         - mariadb-server
-         - mariadb-client
+    apt:
+      name: [mariadb-server, mariadb-client]
+      state: present
 
   - name: Download Wordpress
     get_url:
