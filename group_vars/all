@@ -7,7 +7,7 @@ timezone: Europe/Amsterdam
 # User information
 #username: 
 #password: 
-usergroups: adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi
+usergroups: sudo
 
 #sshkey: 
 
