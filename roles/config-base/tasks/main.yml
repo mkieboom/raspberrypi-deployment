@@ -22,7 +22,7 @@
   - name: Create user and add to groups
     user:
       name: "{{username}}"
-      groups: "{{usergroups}}"
+      groups: "sudo"
       password: "{{password}}"
       shell: /bin/bash
 

@@ -7,7 +7,6 @@ timezone: Europe/Amsterdam
 # User information
 #username: 
 #password: 
-usergroups: sudo
 
 #sshkey: 
 
