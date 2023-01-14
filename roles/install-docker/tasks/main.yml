@@ -28,11 +28,11 @@
   #    url: https://download.docker.com/linux/raspbian/gpg
   #    dest: /tmp/gpg
 
-  - name: Install Docker gpg key
-    shell: curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+  #- name: Install Docker gpg key
+  #  shell: curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
 
-  - name: Install Docker repo
-    shell: echo "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) edge" | sudo tee /etc/apt/sources.list.d/docker.list
+  #- name: Install Docker repo
+  #  shell: echo "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) edge" | sudo tee /etc/apt/sources.list.d/docker.list
 
   # Below Docker install doesn't work on the Pi as there are 2 bugs:
   #
@@ -43,9 +43,9 @@
   # Issue with python-requests package version > 2.11.1
   #
   #- docker-ce=17.09.0~ce-0~raspbian
-  - name: Install Docker-CE and Docker Compose
+  - name: Install Docker and Docker Compose
     apt:
-      name: [docker-ce, docker-compose]
+      name: [docker.io, docker-compose]
       update_cache: yes
 
   - name: Make user 'root' part of the 'docker' group
